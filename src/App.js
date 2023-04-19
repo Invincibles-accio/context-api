@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import PackageContext from "./Context"
+import Provider from "./Provider"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Laugh = () => {
+    return(
+      <div>
+        <h1>Laugh</h1>
+      </div>
+    )
+      
 }
 
-export default App;
+
+const Smile = () => {
+  
+    return(
+      <div>
+            <PackageContext.Consumer> 
+               {
+
+                   (info) => (
+                        <div>
+                              <h1>Name of Cricketer is :{info.data.name} </h1>
+                              <h2>Age of Cricketer is :{info.data.age} </h2>
+                              <button onClick={info.updateAge}> Update Sachin Age</button>
+                              <h3>Country of Cricketer is :{info.data.country} </h3>
+                              <h4>Highest Score of Cricketer is :{info.highestScore} </h4>
+                        </div>
+                   )
+
+               }
+            </PackageContext.Consumer>
+      </div>
+    )
+  
+}
+
+
+
+
+const App = () => {
+  return(
+    <div>
+       <Laugh />
+       <Provider>
+            <Smile />
+       </Provider>
+       
+
+
+    </div>
+  )
+}
+
+
+export default App
